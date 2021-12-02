@@ -1,0 +1,73 @@
+.navbar{
+    margin: 10px 0;
+    padding: 10px 30px;
+    box-shadow: 5px 5px 40px rgba(133, 69, 27, 0.075);
+    border-radius: 20px;
+    background-color: #fae4c3d0;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    align-items: center;
+    
+}
+
+.logo, .pages, .profile {
+    align-items: center;
+    display: flex;
+    align-self: center;
+}
+
+.logo :hover{
+    cursor: pointer;
+}
+
+
+.logo p{
+    font-size: 20px;
+    padding: 5px;
+    font-weight: bold;
+    color: #2B3B4E;
+    margin: 10px;
+}
+
+.pages {
+    justify-content: space-around;
+}
+
+.pages a{
+    width: 100%;
+    text-align: center;
+    color: #2B3B4E;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 17px;
+}
+
+.pages a:hover{
+    /* color: #000000; */
+    border-bottom: 2px solid #FFD05B;
+    background-color: #f9b44c18;
+    cursor: pointer;
+}
+
+.profile {
+    justify-content: flex-end;
+}
+
+.profile button{
+    width: 100%;
+    padding: 10px 20px;
+    margin-left: 20px;
+    font-size: 18px;
+    background-color: #FFD05B;
+    border: none; 
+    border-bottom: 6px solid #F9B54C;
+    color: #2B3B4E;
+    font-weight: bold;
+    
+    border-radius: 10px;
+}
+
+.profile button:hover{
+    background-color: #ffd15ba2;
+    cursor: pointer;
+}
