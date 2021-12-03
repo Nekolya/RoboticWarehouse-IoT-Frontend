@@ -30,3 +30,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
+:root{ 
+  --color-yellow: #FFD05B;
+  --color-dark-yellow: #F9B54C;
+  --color-week-yellow: #fae4c3d0;
+  --color-orange: #FF7058;
+  --color-dark-blue:#2B3B4E; 
+  --color-week-dark-blue:#324A5E; 
+}
