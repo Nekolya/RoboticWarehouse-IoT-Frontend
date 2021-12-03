@@ -27,34 +27,35 @@
 .zone1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 5;
   border-right: none;
-  border-bottom: none;
 }
 
 .zone2 {
-    display: grid;
+display: grid;
   grid-template-columns: 1fr 1fr;
   grid-row-start: 1;
-  grid-row-end: 3;
+  grid-row-end: 6;
   border-bottom: none;
 }
 
 .zone3 {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-column-start: 1;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-start: 6;
+  grid-row-end: 9;
 }
 
 .zone4 {
+display: grid;
+  grid-template-columns: 1fr;
   grid-column-start: 3;
   grid-column-end: 4;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-start: 7;
+  grid-row-end: 8;
   border-left: none;
 }
 
