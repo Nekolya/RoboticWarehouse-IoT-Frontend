@@ -1,11 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import instance from "../lib/instance";
 import styles from "../styles/orders.module.css";
 
-const Orders = ({ orders }) => {
+const Orders = ({ _orders }) => {
+  const [robot, setRobot] = useState(null);
+  const [order, setOrder] = useState(null);
+  const [orders, setOrders] = useState(null);
+
   useEffect(() => {
-    instance.get();
-  });
+    console.log(_orders)
+    setOrders(_orders);
+  }, [])
+
+  useEffect(() => {
+    if (order){ 
+      instance.post('/set-robot/', JSON.stringify({"order_id": order}));
+      setOrder(null)
+      instance.get("/orders/").then((requset) => {
+        setOrders(requset.data);
+      }).catch((error) => {
+        console.log(error);
+      })
+    }
+      
+  }, [order]);
   return (
     <div className={styles.container}>
       <h1>Orders</h1>
@@ -21,12 +39,12 @@ const Orders = ({ orders }) => {
                   <p>Продукт: {item.product.name}</p>
                   <p>Находиться в локации {item.product.location}</p>
                   {item.robot ? (
-                    <p>Доставляет {item.robot.model}</p>
+                    <p>Доставляет {item.robot.id} модели {item.robot.model}</p>
                   ) : (
                     <>
                       <p>Робот не назначен</p>
-                      <button>Назначить случайного</button>
-                      <button>Назначить из списка</button>
+                      <button onClick={() => setOrder(item.id)}>Начать сборку</button>
+                      {/* <button>Назначить из списка</button> */}
                     </>
                   )}
                   {/* <p>В наличии {item.amount} шт.</p> */}
@@ -41,10 +59,10 @@ const Orders = ({ orders }) => {
 export async function getServerSideProps() {
   try {
     const data = await instance.get("/orders/");
-    return { props: { orders: data.data } };
+    return { props: { _orders: data.data } };
   } catch (error) {
     console.log(error);
-    return { props: { products: null } };
+    return { props: { _orders: null } };
   }
 }
 export default Orders;
