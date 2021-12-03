@@ -16,7 +16,7 @@ const Products = ({ products }) => {
                   <p>Цена: {item.cost} р.</p>
                   <p>Категория: {item.category.name}</p>
                   <p>Находиться в локации {item.location}</p>
-                  <p>В наличии {item.amount} шт.</p>
+                  {/* <p>В наличии {item.amount} шт.</p> */}
                   
                 </div>
               </div>
@@ -33,7 +33,7 @@ export async function getServerSideProps() {
     return { props: { products: data.data } };
   } catch (error) {
     console.log(error);
-    return { props: { data: null, publications: null } };
+    return { props: { products: null } };
   }
 }
 export default Products;

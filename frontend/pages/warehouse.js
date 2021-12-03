@@ -33,7 +33,50 @@ const Warehouse = () => {
 
   return (
     <div className={styles.container}>
+      <div>
       <h1>Warehouse structure</h1>
+        <p>
+          0 Переходный пункт <br />
+          1 Процессоры
+          <br />
+          2 Материнские платы
+          <br />
+          3 Видеокарты
+          <br />
+          4 Оперативная память
+          <br />
+          5 Корпуса
+          <br />
+          6 Блоки питания
+          <br />
+          7 Системы охлаждения
+          <br />
+          8 SSD
+          <br />
+          9 HDD
+          <br />
+          10 Звуковые карты
+          <br />
+          11 Сетевые карты
+          <br />
+          12 Гарнитура
+          <br />
+          13 USB устройства
+          <br />
+          14 ПК
+          <br />
+          15 Ноутбуки
+          <br />
+          16 Зона выдачи
+          <br />
+          17 Зарядки
+          <br />
+          18 Сортировочный центр
+          <br />
+        </p>
+      </div>
+      
+
       <div className={styles.content_container}>
         <div className={styles.zone1}>
           <div></div>
@@ -45,6 +88,7 @@ const Warehouse = () => {
                   <p className={styles.content}>
                     locations: <br />
                     {item.loc.map(function (item) {
+                      if (!item) return <>↕</>;
                       return <>{item}, </>;
                     })}
                   </p>
@@ -75,6 +119,7 @@ const Warehouse = () => {
                   <p className={styles.content}>
                     locations: <br />
                     {item.loc.map(function (item) {
+                      if (!item) return <>↕</>;
                       return <>{item}, </>;
                     })}
                   </p>
@@ -111,6 +156,7 @@ const Warehouse = () => {
                   <p className={styles.content}>
                     locations: <br />
                     {item.loc.map(function (item) {
+                      if (!item) return <>↕</>;
                       return <>{item}, </>;
                     })}
                   </p>
@@ -132,7 +178,6 @@ const Warehouse = () => {
           })}
         </div>
         <div className={styles.zone4}>
-
           {zone4.map(function (item) {
             return (
               <>
@@ -141,7 +186,7 @@ const Warehouse = () => {
                   <p className={styles.content}>
                     locations: <br />
                     {item.loc.map(function (item) {
-                      return <>{item}, </>;
+                      return <>{item} </>;
                     })}
                   </p>
                   {Boolean(item.lines[0]) && (

@@ -26,6 +26,8 @@
 
 .zone1 {
   display: grid;
+  grid-column-start: 1;
+  grid-column-end: 2;
   grid-template-columns: 1fr 1fr;
   grid-row-start: 3;
   grid-row-end: 5;
@@ -33,6 +35,8 @@
 }
 
 .zone2 {
+grid-column-start: 2;
+  grid-column-end: 3;
 display: grid;
   grid-template-columns: 1fr 1fr;
   grid-row-start: 1;
@@ -43,7 +47,7 @@ display: grid;
 .zone3 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-column-start: 2;
+  grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 6;
   grid-row-end: 9;
