@@ -120,7 +120,7 @@ display: grid;
 }
 
 .robot{
-  color: var(--color-orange);
+  color: red;
 }
 
 .robots{

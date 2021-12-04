@@ -2,28 +2,43 @@ import React, { useEffect, useState } from "react";
 import instance from "../lib/instance";
 import styles from "../styles/orders.module.css";
 
-const Orders = ({ _orders }) => {
+const Orders = ({}) => {
   const [robot, setRobot] = useState(null);
   const [order, setOrder] = useState(null);
   const [orders, setOrders] = useState(null);
 
   useEffect(() => {
-    console.log(_orders)
-    setOrders(_orders);
-  }, [])
+    instance
+      .get("/orders/")
+      .then((requset) => {
+        setOrders(requset.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   useEffect(() => {
-    if (order){ 
-      instance.post('/set-robot/', JSON.stringify({"order_id": order}));
-      setOrder(null)
-      instance.get("/orders/").then((requset) => {
-        setOrders(requset.data);
-      }).catch((error) => {
-        console.log(error);
-      })
+    if (order) {
+      instance
+        .post("/set-robot/", JSON.stringify({ order_id: order }))
+        .then((requset) => {
+          setOrder(null);
+          instance
+            .get("/orders/")
+            .then((requset) => {
+              setOrders(requset.data);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-      
   }, [order]);
+
   return (
     <div className={styles.container}>
       <h1>Orders</h1>
@@ -39,11 +54,16 @@ const Orders = ({ _orders }) => {
                   <p>Продукт: {item.product.name}</p>
                   <p>Находиться в локации {item.product.location}</p>
                   {item.robot ? (
-                    <p>Доставляет {item.robot.id} модели {item.robot.model}</p>
+                    <p>
+                      Доставляет робот №{item.robot.id} модели{" "}
+                      {item.robot.model}
+                    </p>
                   ) : (
                     <>
                       <p>Робот не назначен</p>
-                      <button onClick={() => setOrder(item.id)}>Начать сборку</button>
+                      <button onClick={() => setOrder(item.id)}>
+                        Начать сборку
+                      </button>
                       {/* <button>Назначить из списка</button> */}
                     </>
                   )}
@@ -56,13 +76,5 @@ const Orders = ({ _orders }) => {
     </div>
   );
 };
-export async function getServerSideProps() {
-  try {
-    const data = await instance.get("/orders/");
-    return { props: { _orders: data.data } };
-  } catch (error) {
-    console.log(error);
-    return { props: { _orders: null } };
-  }
-}
+
 export default Orders;
